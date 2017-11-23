@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">oving5</string>
+    <string name="title_activity_guess">GuessActivity</string>
+    <string name="start_over">Start over</string>
+</resources>
