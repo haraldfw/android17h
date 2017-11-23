@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">oving2</string>
+    <string name="title_activity_calculator">Calc</string>
+    <string name="add">Adder</string>
+    <string name="multiply">Multipliser</string>
+    <string name="ans">Svar: </string>
+    <string name="upper_lim">Øvre grense: </string>
+    <string name="correct">Riktig</string>
+    <string name="incorrect">Feil. Riktig svar er: </string>
+</resources>
