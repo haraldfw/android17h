@@ -1,25 +1,16 @@
 package org.haraldfw.oving4;
 
 import android.app.Fragment;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.haraldfw.oving4.dummy.ImageContent;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 
 /**
@@ -90,8 +81,6 @@ public class ImageFragment extends Fragment implements View.OnClickListener {
         prevButton = view.findViewById(R.id.prevImgBut);
         prevButton.setOnClickListener(this);
     }
-
-
 
 
     private void updateInfo(View view) {

@@ -1,12 +1,12 @@
 package org.haraldfw.oving4;
 
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import org.haraldfw.oving4.dummy.ImageContent;
 
-public class MainActivity extends AppCompatActivity implements ImageListFragment.OnListFragmentInteractionListener{
+public class MainActivity extends AppCompatActivity implements ImageListFragment.OnListFragmentInteractionListener {
 
     private android.app.FragmentManager fragmentManager;
     private android.app.FragmentTransaction fragmentTransaction;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements ImageListFragment
 
         setContentView(R.layout.activity_main);
         imageFragment = (ImageFragment) getFragmentManager().findFragmentById(R.id.imageFragment);
-        listFragment =(ImageListFragment) getFragmentManager().findFragmentById(R.id.imageList);
+        listFragment = (ImageListFragment) getFragmentManager().findFragmentById(R.id.imageList);
     }
 
     @Override
