@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements ImageListFragment
 
     @Override
     public void onListFragmentInteraction(ImageContent.Image item) {
-        System.out.println("interaction");
         imageFragment.setImage(item);
     }
 }

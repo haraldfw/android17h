@@ -6,13 +6,20 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.haraldfw.oving4.dummy.ImageContent;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 
 /**
@@ -23,12 +30,15 @@ import org.haraldfw.oving4.dummy.ImageContent;
  * Use the {@link ImageFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ImageFragment extends Fragment {
+public class ImageFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String IMG_ID = "imageId";
     private static final String IMG_DESC = "imageDescription";
     private static final String IMG_DRAWABLE = "imageDrawable";
+
+    private Button nextButton;
+    private Button prevButton;
 
 
     // TODO: Rename and change types of parameters
@@ -72,6 +82,19 @@ public class ImageFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        updateInfo(view);
+
+        nextButton = view.findViewById(R.id.nextImgBut);
+        nextButton.setOnClickListener(this);
+
+        prevButton = view.findViewById(R.id.prevImgBut);
+        prevButton.setOnClickListener(this);
+    }
+
+
+
+
+    private void updateInfo(View view) {
         TextView textView = view.findViewById(R.id.imageDescription);
         textView.setText(this.image.description);
         ImageView imageView = view.findViewById(R.id.imageView);
@@ -87,7 +110,26 @@ public class ImageFragment extends Fragment {
 
     public void setImage(ImageContent.Image image) {
         this.image = image;
-        onViewCreated(getView(), null);
+        updateInfo(getView());
+    }
+
+    @Override
+    public void onClick(View view) {
+        int i = view.getId();
+        if (i == R.id.nextImgBut) {
+            moveImageIndex(1);
+        } else if (i == R.id.prevImgBut) {
+            moveImageIndex(-1);
+        } else {
+            throw new IllegalStateException("Invalid button pressed");
+        }
+        updateInfo(getView());
+    }
+
+    private void moveImageIndex(int mod) {
+        setImage(ImageContent.ITEMS.get(
+                (Integer.parseInt(this.image.id) + mod + ImageContent.ITEMS.size())
+                        % ImageContent.ITEMS.size()));
     }
 
     /**
