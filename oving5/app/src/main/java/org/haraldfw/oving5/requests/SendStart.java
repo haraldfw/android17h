@@ -20,6 +20,7 @@ public class SendStart extends BaseRequestTask {
     @Override
     protected Object doInBackground(Object[] objects) {
         try {
+            System.out.println("Sending name and card-number to server. ");
             return Unirest.get(GAME_URL)
                     .field("navn", objects[0])
                     .field("kortnummer", objects[1])

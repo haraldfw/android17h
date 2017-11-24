@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="org.haraldfw.oving6client.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/answer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="nope"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/input_a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Input A"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/input_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Input B"
+            android:inputType="number" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="sendQuestion"
+            android:text="Send" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startClient"
+            android:text="start" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="stopClient"
+            android:text="stop" />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

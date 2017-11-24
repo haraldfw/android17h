@@ -21,7 +21,7 @@ public class SendGuess extends BaseRequestTask {
     @Override
     protected Object doInBackground(Object[] objects) {
         try {
-            System.out.println(objects[0]);
+            System.out.println("Sending guess to server");
             return Unirest.get(GAME_URL)
                     .field("tall", objects[0])
                     .asString()

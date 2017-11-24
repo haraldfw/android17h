@@ -49,6 +49,7 @@ public class GuessActivity extends AppCompatActivity {
     }
 
     public void startOver(View view) {
+        System.out.println("Returning to main screen. Starting over");
         finish();
     }
 }
