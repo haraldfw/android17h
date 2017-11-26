@@ -1,23 +1,22 @@
-package org.haraldfw.sudo_ku.board;
+package org.haraldfw.sudoq.board;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import org.haraldfw.sudo_ku.R;
-import org.haraldfw.sudo_ku.board.components.BoardLayout;
-import org.haraldfw.sudo_ku.board.components.NumberPickerFragment;
+import org.haraldfw.sudoq.R;
+import org.haraldfw.sudoq.board.components.BoardLayout;
+import org.haraldfw.sudoq.board.components.NumberPickerFragment;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class BoardCreateActivity extends AppCompatActivity implements NumberPickerFragment.OnFragmentInteractionListener {
 
@@ -30,12 +29,17 @@ public class BoardCreateActivity extends AppCompatActivity implements NumberPick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_create);
-        board = findViewById(R.id.sudoku_board);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        board = findViewById(R.id.sudoq_board);
 
         NumberPickerFragment numberPicker =
                 (NumberPickerFragment) getFragmentManager().findFragmentById(R.id.numberpicker);
 
         board.setNumberPicker(numberPicker);
+        board.setCheckForSolution(false);
     }
 
     @Override
@@ -44,24 +48,31 @@ public class BoardCreateActivity extends AppCompatActivity implements NumberPick
     }
 
     public void saveBoard(View view) {
-        if(!initialValuesFilled) {
+        if (!initialValuesFilled) {
             initialValuesFilled = true;
             board.lockTiles();
             Button button = findViewById(R.id.save_button);
             button.setText(R.string.label_button_save);
             return;
         }
+
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.pick_difficulty);
         builder.setItems(R.array.difficulty_names, (dialog, which) -> difficultySelected(which));
         builder.show();
     }
 
-    public void difficultySelected(int which){
-        String boardJson = board.toJson(which);
+    public void difficultySelected(int which) {
+        if (!board.isFilled()) {
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "Fill out all fields before saving", Toast.LENGTH_LONG);
+            toast.show();
+            return;
+        }
+        String boardJson = board.toJson();
         saveFile(String.valueOf(which), boardJson);
         Log.i(TAG, "saveBoard: " + boardJson);
-        Log.i(TAG, "difficultySelected: " + Arrays.toString(fileList()));
         finish();
     }
 

@@ -1,4 +1,4 @@
-package org.haraldfw.sudo_ku.settings;
+package org.haraldfw.sudoq.settings;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:label="@string/title_activity_board_create"
-    tools:context="org.haraldfw.sudoq.board.BoardCreateActivity">
+    tools:context="org.haraldfw.sudoq.InstructionsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,6 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_board_create" />
+    <include layout="@layout/content_instructions" />
 
 </android.support.design.widget.CoordinatorLayout>

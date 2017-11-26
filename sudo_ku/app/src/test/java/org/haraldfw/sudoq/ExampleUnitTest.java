@@ -1,4 +1,4 @@
-package org.haraldfw.sudo_ku;
+package org.haraldfw.sudoq;
 
 import org.junit.Test;
 

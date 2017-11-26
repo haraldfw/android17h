@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">sudo_ku</string>
+    <string name="app_name">SudoQ</string>
 
     <string name="title_activity_board_solve">Solve board</string>
     <string name="title_activity_board_create">Create board</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_instructions">Instructions</string>
 
     <string name="pref_header_general">General</string>
     <string name="label_entry_language">Language</string>
@@ -35,5 +36,24 @@
     <string name="pick_difficulty">Pick difficulty</string>
     <string name="label_button_lock">Lock</string>
     <string name="label_button_solve_board">Solve</string>
+    <string name="label_radio_erase">Erase</string>
+    <string name="label_radio_color">Color</string>
 
+    <string name="win_title">You won!</string>
+    <string name="win_msg">Puzzle is solved correctly</string>
+    <string name="incorrect_title">Incorrect</string>
+    <string name="incorrect_msg">Puzzle is filled incorrectly</string>
+
+    <string name="instructions_solving_a_puzzle">Solving a puzzle</string>
+    <string name="instructions_sudoku_explanation">Soduko is a game where the goal is to fill all 3x3 squares and all rows and columns with the numbers 1 through 9.</string>
+    <string name="instructions_choose_diff">Firstly pick your difficulty by clicking on one of them from the pop-up dialog.</string>
+    <string name="instructions_board_presented">You will then be presented with a board like this. Manipulating the squares is done by choosing and action from in the bottom of the screen and then clicking on a square. The numbers 1–9 places down that number, and \'Erase\' erases the square you click on.</string>
+    <string name="instructions_colors">You can also toggle a colorization of a number in a cell. This is done by choosing the \'Color\' action and clicking on a cell.</string>
+    <string name="instructions_solve_it">Continue filling out the cells until you come to a solution. Remember that a valid Sudoku puzzle has only one solution.</string>
+    <string name="instructions_solved_prompt">When you are done filling out all the cells a prompt will come up saying if you solved it correctly or not. By exiting the prompt you can continue editing the puzzle and try again without having to start from scratch.</string>
+    <string name="instructions_creating_new_puzzles">Creating new puzzles</string>
+    <string name="instructions_fill_out_start">Firstly fill in all your values that you want the puzzle to start with pre filled.</string>
+    <string name="instructions_locking_down">You then have to click the button that says \'LOCK\'. This will lock those numbers and prevent you from editing them further. They should now be shown as bold.</string>
+    <string name="instructions_fill_correct_solution">You now have to fill in the correct solution to the puzzle.</string>
+    <string name="instructions_saving_your_puzzle">When you are done with that you can press \'SAVE\' and choose a difficulty for your puzzle.</string>
 </resources>

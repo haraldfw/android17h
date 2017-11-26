@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.haraldfw.sudo_ku.board.components.NumberPickerFragment">
+    tools:context="org.haraldfw.sudoq.board.components.NumberPickerFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -47,6 +47,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="5" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="6" />
         </RadioGroup>
 
         <RadioGroup
@@ -54,12 +60,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="6" />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -82,8 +82,14 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="E" />
+                android:layout_weight="1.5"
+                android:text="@string/label_radio_erase" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="@string/label_radio_color" />
         </RadioGroup>
 
     </LinearLayout>

@@ -1,4 +1,4 @@
-package org.haraldfw.sudo_ku.board.components;
+package org.haraldfw.sudoq.board.components;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import org.haraldfw.sudo_ku.R;
+import org.haraldfw.sudoq.R;
 
 
 public class NumberPickerFragment extends Fragment {

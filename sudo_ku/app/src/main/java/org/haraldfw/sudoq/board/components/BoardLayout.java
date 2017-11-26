@@ -1,14 +1,16 @@
-package org.haraldfw.sudo_ku.board.components;
+package org.haraldfw.sudoq.board.components;
 
 import android.content.Context;
-import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.GridLayout;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.FileOutputStream;
+import org.haraldfw.sudoq.R;
+import org.haraldfw.sudoq.board.BoardFileContants;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +26,8 @@ public class BoardLayout extends GridLayout {
     private static final String TAG = "BoardLayout";
 
     public TileView[][] tileViews;
+
+    private boolean checkForSolution = true;
 
     public BoardLayout(Context context) {
         super(context);
@@ -47,6 +51,7 @@ public class BoardLayout extends GridLayout {
 
 
     private void init(Context context) {
+        setBackground(new GridBackground(this));
         Log.d(TAG, "init: called");
         setColumnCount(9);
         setRowCount(9);
@@ -54,7 +59,7 @@ public class BoardLayout extends GridLayout {
         tileViews = new TileView[9][9];
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                TileView tile = new TileView(context, i, j, null);
+                TileView tile = new TileView(context, i, j, null, this);
                 tileViews[i][j] = tile;
                 addView(tile);
             }
@@ -62,21 +67,20 @@ public class BoardLayout extends GridLayout {
     }
 
     public void setTilesFromJson(Map map) {
-        List tiles = (List) map.get("tiles");
+        List tiles = (List) map.get(BoardFileContants.TILES);
 
         for (Object t :
                 tiles) {
             Map tile = (Map) t;
-            int col = (Integer) tile.get("column");
-            int row = (Integer) tile.get("row");
-            boolean locked = (Boolean) tile.get("locked");
-            String value = (String) tile.get("value");
-            String correct = (String) tile.get("correct");
-            tileViews[row][col].setValues(value, locked, correct);
+            int col = (Integer) tile.get(BoardFileContants.COLUMN);
+            int row = (Integer) tile.get(BoardFileContants.ROW);
+            boolean locked = (Boolean) tile.get(BoardFileContants.LOCKED);
+            String value = String.valueOf(tile.get(BoardFileContants.VALUE));
+            tileViews[row][col].setValues(value, locked);
         }
     }
 
-    public void lockTiles(){
+    public void lockTiles() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 tileViews[i][j].lock();
@@ -92,11 +96,8 @@ public class BoardLayout extends GridLayout {
         }
     }
 
-    public String toJson(int difficulty) {
+    public String toJson() {
         Map<String, Object> map = new HashMap<>();
-
-        map.put("difficulty", difficulty);
-
         List<Map> tiles = new ArrayList<>();
         map.put("tiles", tiles);
 
@@ -105,7 +106,7 @@ public class BoardLayout extends GridLayout {
                 TileView t = tileViews[i][j];
 
                 Map m = t.toJson();
-                if(m != null) {
+                if (m != null) {
                     tiles.add(m);
                 }
             }
@@ -119,6 +120,19 @@ public class BoardLayout extends GridLayout {
         }
     }
 
+    public boolean isFilled() {
+        boolean filled = true;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                TileView t = tileViews[i][j];
+                if (!t.isFilled()) {
+                    filled = false;
+                }
+            }
+        }
+        return filled;
+    }
+
     public boolean isSolved() {
         boolean solved = true;
         for (int i = 0; i < 9; i++) {
@@ -130,5 +144,30 @@ public class BoardLayout extends GridLayout {
             }
         }
         return solved;
+    }
+
+    public void checkForSolved() {
+        if (checkForSolution) {
+            if (!isFilled()) {
+                return;
+            }
+            int msgId;
+            int titleId;
+            if (isSolved()) {
+                titleId = R.string.win_title;
+                msgId = R.string.win_msg;
+            } else {
+                titleId = R.string.incorrect_title;
+                msgId = R.string.incorrect_msg;
+            }
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle(titleId);
+            builder.setMessage(msgId);
+            builder.show();
+        }
+    }
+
+    public void setCheckForSolution(boolean checkForSolution) {
+        this.checkForSolution = checkForSolution;
     }
 }

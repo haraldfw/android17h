@@ -1,20 +1,20 @@
-package org.haraldfw.sudo_ku.board;
+package org.haraldfw.sudoq.board;
 
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.haraldfw.sudo_ku.R;
-import org.haraldfw.sudo_ku.board.components.BoardLayout;
-import org.haraldfw.sudo_ku.board.components.NumberPickerFragment;
+import org.haraldfw.sudoq.R;
+import org.haraldfw.sudoq.board.components.BoardLayout;
+import org.haraldfw.sudoq.board.components.NumberPickerFragment;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -31,7 +31,11 @@ public class BoardSolveActivity extends AppCompatActivity implements NumberPicke
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_board_solve);
-        board = findViewById(R.id.sudoku_board);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        board = findViewById(R.id.sudoq_board);
 
         NumberPickerFragment numberPicker =
                 (NumberPickerFragment) getFragmentManager().findFragmentById(R.id.numberpicker);
@@ -47,7 +51,8 @@ public class BoardSolveActivity extends AppCompatActivity implements NumberPicke
     private void onDifficultySelected(int which) {
         String[] fileList = fileList();
         Log.d(TAG, "onDifficultySelected: " + Arrays.toString(fileList));
-        fileList = Arrays.stream(fileList).filter(s -> String.valueOf(which).equals(Character.toString(s.charAt(0)))).toArray(String[]::new);
+        fileList = Arrays.stream(fileList).filter(s -> String.valueOf(which)
+                .equals(s.split("-")[0])).toArray(String[]::new);
         String filename = fileList[new Random().nextInt(fileList.length)];
         String json = "{}";
         try {

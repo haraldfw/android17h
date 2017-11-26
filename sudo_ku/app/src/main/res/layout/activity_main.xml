@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.haraldfw.sudo_ku.MainActivity">
+    tools:context="org.haraldfw.sudoq.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,6 +27,12 @@
             android:layout_height="wrap_content"
             android:onClick="startSettings"
             android:text="@string/title_activity_settings" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="startInstructions"
+            android:text="@string/title_activity_instructions" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

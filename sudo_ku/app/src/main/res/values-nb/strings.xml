@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">sudo_ku</string>
+    <string name="app_name">SudoQ</string>
 
     <string name="title_activity_board_solve">Løs brett</string>
     <string name="title_activity_board_create">Lag brett</string>
     <string name="title_activity_settings">Innstillinger</string>
+    <string name="title_activity_instructions">Bruksanvisning</string>
 
     <string name="pref_header_general">Generelt</string>
     <string name="label_entry_language">Språk</string>
@@ -35,4 +36,24 @@
     <string name="pick_difficulty">Velg vanskelighetsgrad</string>
     <string name="label_button_lock">Lås</string>
     <string name="label_button_solve_board">Løs brett</string>
+    <string name="label_radio_erase">Visk</string>
+    <string name="label_radio_color">Farge</string>
+
+    <string name="win_title">Du vant!</string>
+    <string name="win_msg">Brettet er løst riktig</string>
+    <string name="incorrect_title">Feil</string>
+    <string name="incorrect_msg">Brettet er fylt ut feil</string>
+
+    <string name="instructions_solving_a_puzzle">Hvordan løse et brett</string>
+    <string name="instructions_sudoku_explanation">Soduko er et spill der målet er å fylle alle 3x3-rutene, radene og kolonnene med tallene 1 gjennom 9.</string>
+    <string name="instructions_choose_diff">Velg vanskelighetsgrad fra dialogen som kommer opp</string>
+    <string name="instructions_board_presented">Du vil nå blir presentert med et brett som dette. Du manipulerer rutene ved å velge en action på bunnen av skjermen. Tallene 1 gjennom 9 vil plassere ned et tall og \'Visk\' vil slette verdien i en rute.</string>
+    <string name="instructions_colors">Du kan også veksle en farge på ruter ved å velge action-en \'Farge\' på bunnen av skjermen og så trykke på en rute.</string>
+    <string name="instructions_solve_it">Fortsett med å fylle ut rutene til du kommer til en løsning. Husk at et gyldig Sudoku-brett bare har èn gyldig løsning!</string>
+    <string name="instructions_solved_prompt">Når du er ferdig med å fylle ut rutene vil det komme opp en dialog som sier om du har gjort det riktig eller ikke. Ved å krysse ut dialogen vil du ha muligheten til å fortsette å endre på brettet uten å måtte starte helt om igjen.</string>
+    <string name="instructions_creating_new_puzzles">Hvordan lage nye brett</string>
+    <string name="instructions_fill_out_start">Først fyller du ut alle verdiene spilleren skal starte med når de åpner brettet.</string>
+    <string name="instructions_locking_down">Du trykker så på knappen som sier \'LÅS\'. Dette vil låse ned de tallene du har skrevet inn og du vil ikke ha mulighet til å endre de lenger. De skal også nå være i fet skrift.</string>
+    <string name="instructions_fill_correct_solution">Du må nå fylle ut resten av den riktige løsningen av brettet.</string>
+    <string name="instructions_saving_your_puzzle">Når du er ferdig trykker du på knappen \'LAGRE\' og velger en vanskelighetsgrad fra dialogen som kommer up.</string>
 </resources>

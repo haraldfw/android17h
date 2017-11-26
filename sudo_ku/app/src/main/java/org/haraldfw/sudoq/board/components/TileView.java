@@ -1,13 +1,16 @@
-package org.haraldfw.sudo_ku.board.components;
+package org.haraldfw.sudoq.board.components;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.InputType;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 
-import org.haraldfw.sudo_ku.R;
+import org.haraldfw.sudoq.R;
+import org.haraldfw.sudoq.board.BoardFileContants;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,17 +21,24 @@ import java.util.Map;
 
 public class TileView extends android.support.v7.widget.AppCompatTextView implements View.OnClickListener {
 
+    private static final String TAG = "TileView";
+    private final BoardLayout board;
     private String correctValue;
     private int row;
     private int column;
     private boolean locked = false;
+    private boolean colored = false;
 
-    private static final int margin = 10;
+    private static final int margin = 5;
+
+    private int defColor;
 
     private NumberPickerFragment numberPicker;
 
-    public TileView(Context context, int row, int column, String value) {
+    public TileView(Context context, int row, int column, String value, BoardLayout board) {
         super(context);
+        this.board = board;
+        defColor = getTextColors().getDefaultColor();
         if (value != null && !value.isEmpty()) {
             setText(value);
             lock();
@@ -36,13 +46,12 @@ public class TileView extends android.support.v7.widget.AppCompatTextView implem
         init(row, column);
     }
 
-    public void setValues(String value, boolean locked, String correctValue) {
-        setText(value);
-        this.locked = locked;
-        if(locked){
+    public void setValues(String value, boolean locked) {
+        if (locked) {
+            setText(value);
             lock();
         }
-        this.correctValue = correctValue;
+        this.correctValue = value;
     }
 
     private void init(int row, int column) {
@@ -54,16 +63,18 @@ public class TileView extends android.support.v7.widget.AppCompatTextView implem
         );
         params.setGravity(Gravity.FILL);
         params.setMargins(margin, margin, margin, margin);
-        setBackgroundColor(Color.WHITE);
+        params.width = 0;
         setLayoutParams(params);
+        setBackgroundColor(Color.WHITE);
         setGravity(Gravity.CENTER);
-        setTextSize(25f);
+        setTextSize(30f);
+        setInputType(InputType.TYPE_CLASS_NUMBER);
         setOnClickListener(this);
         setBackground(getResources().getDrawable(R.drawable.rounded_corners, getContext().getTheme()));
     }
 
     public boolean isSolved() {
-        return getText().equals(correctValue);
+        return getText().toString().equals(correctValue);
     }
 
     public void setNumberPicker(NumberPickerFragment numberPicker) {
@@ -76,27 +87,33 @@ public class TileView extends android.support.v7.widget.AppCompatTextView implem
             return;
         }
         CharSequence nVal = numberPicker.getSelectedAction();
-        setText(nVal == null ? "" : nVal.equals("E") ? "" : nVal);
+        if (nVal != null) {
+            if (nVal.equals(getResources().getString(R.string.label_radio_erase))) {
+                setText("");
+            } else if (nVal.equals(getResources().getString(R.string.label_radio_color))) {
+                toggleColor();
+            } else {
+                setText(nVal);
+                board.checkForSolved();
+            }
+        }
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof TileView)) {
-            return false;
+    private void toggleColor() {
+        if (colored) {
+            setTextColor(defColor);
+        } else {
+            setTextColor(Color.BLUE);
         }
-        TileView t = (TileView) obj;
-        return t.getText().toString().equals(t.getText().toString())
-                && correctValue.equals(t.correctValue);
+        colored = !colored;
     }
 
     public Map<String, Object> toJson() {
         Map<String, Object> map = new HashMap<>();
-        String val = getText().toString();
-        map.put("row", row);
-        map.put("column", column);
-        map.put("value", val);
-        map.put("correct", val);
-        map.put("locked", locked);
+        map.put(BoardFileContants.ROW, row);
+        map.put(BoardFileContants.COLUMN, column);
+        map.put(BoardFileContants.VALUE, Integer.parseInt(getText().toString()));
+        map.put(BoardFileContants.LOCKED, locked);
         return map;
     }
 
@@ -108,5 +125,8 @@ public class TileView extends android.support.v7.widget.AppCompatTextView implem
         }
     }
 
+    public boolean isFilled() {
+        return !getText().toString().isEmpty();
+    }
 }
 

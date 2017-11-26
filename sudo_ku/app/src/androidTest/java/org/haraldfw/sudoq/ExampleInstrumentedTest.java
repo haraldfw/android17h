@@ -1,4 +1,4 @@
-package org.haraldfw.sudo_ku;
+package org.haraldfw.sudoq;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("org.haraldfw.sudo_ku", appContext.getPackageName());
+        assertEquals("org.haraldfw.sudoq", appContext.getPackageName());
     }
 }
