@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">sudo_ku</string>
+
+    <string name="title_activity_board_solve">Løs brett</string>
+    <string name="title_activity_board_create">Lag brett</string>
+    <string name="title_activity_settings">Innstillinger</string>
+
+    <string name="pref_header_general">Generelt</string>
+    <string name="label_entry_language">Språk</string>
+
+    <string-array name="languages_names">
+        <item>Standard</item>
+        <item>English</item>
+        <item>Norsk bokmål</item>
+    </string-array>
+    <string-array name="languages_values">
+        <item>system</item>
+        <item>en</item>
+        <item>nb</item>
+    </string-array>
+
+    <string-array name="difficulty_names">
+        <item>Lett</item>
+        <item>Medium</item>
+        <item>Vanskelig</item>
+    </string-array>
+    <string-array name="difficulty_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="label_button_save">Lagre</string>
+    <string name="label_button_cancel">Avbryt</string>
+    <string name="pick_difficulty">Velg vanskelighetsgrad</string>
+    <string name="label_button_lock">Lås</string>
+    <string name="label_button_solve_board">Løs brett</string>
+</resources>

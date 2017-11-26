@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="org.haraldfw.sudo_ku.board.BoardCreateActivity"
+    tools:showIn="@layout/activity_board_create">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <org.haraldfw.sudo_ku.board.components.BoardLayout
+            android:id="@+id/sudoku_board"
+            android:layout_width="match_parent"
+            android:layout_gravity="fill_vertical"
+            android:layout_row="0" />
+
+        <fragment
+            android:id="@+id/numberpicker"
+            android:name="org.haraldfw.sudo_ku.board.components.NumberPickerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="2"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/save_button"
+                android:onClick="saveBoard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/label_button_lock"/>
+            <Button
+                android:onClick="cancelBoard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/label_button_cancel"/>
+        </LinearLayout>
+
+    </GridLayout>
+
+</android.support.constraint.ConstraintLayout>
